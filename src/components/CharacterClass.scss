@@ -25,12 +25,16 @@
       position: absolute;
       transform: scale3d(0.92, 0.92, 1);
       transform-origin: center;
-      z-index: 100;
+      z-index: 250;
     }
 
     & .buttonContainer:active {
       transform: scale3d(0.98, 0.98, 1);
       transition: 0.25s ease-out transform;
+    }
+
+    & .border {
+      z-index: 500;
     }
 
     & .character_text {
@@ -116,7 +120,8 @@
       float: left;
       position: absolute;
       top: 10px;
-      left: 40px;
+      left: 38px;
+      transform: scale(1.06);
       z-index: 20;
     }
   }

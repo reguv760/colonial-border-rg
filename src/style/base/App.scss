@@ -9,7 +9,9 @@ body {
   font-size: 62.5%;
   margin: 0;
   padding: 0;
-  background-color: $silverGray;
+  background-image: url("./../../assets/colonial_bg.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 img {
