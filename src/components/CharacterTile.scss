@@ -80,14 +80,6 @@
     color: $silverGray;
   }
 
-  /* .character_type h4 {
-      display: block;
-      font-size: 20px;
-      text-align: center;
-      z-index: 100;
-      color: #333;
-    } */
-
   & .characterContainer {
     float: left;
     position: absolute;
@@ -96,9 +88,12 @@
     transform: scale(1.06);
     z-index: 20;
   }
-}
 
-// & .buttonContainer:active,
-// & .buttonContainer:focus {
-//   transform: scale3d(0.98, 0.98, 1);
-// }
+  & .activeFrame_container {
+    float: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+}

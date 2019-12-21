@@ -3,16 +3,6 @@ import React, { Component } from "react";
 import CharacterTile from "./CharacterTile";
 
 class CharacterClass extends Component {
-  state = {
-    buttonClicked: false
-  };
-
-  MouseClickHandler = () => {
-    this.setState(state => ({
-      buttonClicked: !this.state.buttonClicked
-    }));
-  };
-
   render() {
     return (
       <div className='character-item'>

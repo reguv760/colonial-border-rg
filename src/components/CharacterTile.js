@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { Tween } from "react-gsap";
 
 import FrameImg from "./../assets/class-select-frame.png";
+//import ActiveFrame from "./../assets/border-anim_active-static.png";
 import AnimatedBorder from "./../assets/border-anim.png";
-import ClickedBorder from "./../assets/border-anim_active.png";
+import ClickedBorder from "./../assets/border-anim_active-static.png";
 
 class CharacterTile extends Component {
   state = {
@@ -18,9 +20,10 @@ class CharacterTile extends Component {
   };
 
   MouseOutHandler = () => {
+    // if (!this.state.buttonClicked) {
+    //   this.setState({ animatedImageLoaded: false });
+    // } else
     this.setState({ animatedImageLoaded: false });
-    if (this.state.buttonClicked) {
-    }
   };
 
   CharacterClick = () => {
@@ -34,7 +37,9 @@ class CharacterTile extends Component {
     this.state.animatedImageLoaded ? "afterImage" : "beforeImage";
 
   componentDidMount() {
-    this.setState({ animatedBorder: AnimatedBorder });
+    this.setState({
+      animatedBorder: AnimatedBorder
+    });
   }
 
   render() {
@@ -49,6 +54,7 @@ class CharacterTile extends Component {
     };
 
     const imageName = this.getImageName();
+
     return (
       <div
         className='buttonContainer'
@@ -56,16 +62,16 @@ class CharacterTile extends Component {
         onMouseOut={this.MouseOutHandler}
         onClick={this.CharacterClick}
       >
-        {/* <img className='border' src={currentImage[imageName]} alt='Frame' /> */}
-
-        {this.state.buttonClicked && this.state.animatedImageLoaded ? (
+        {/* initial state this.state.buttonClicked &&
+        this.state.animatedImageLoaded ? (
           <img className='border' src={ClickedBorder} alt='Frame' />
         ) : !this.state.buttonClicked && !this.state.animatedImageLoaded ? (
           <img className='border' src={currentImage.beforeImage} alt='Frame' />
         ) : (
           <img className='border' src={currentImage[imageName]} alt='Frame' />
-        )}
+        ) */}
 
+        <img className='border' src={currentImage[imageName]} alt='Frame' />
         <div className='character_text'>
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero,
@@ -86,6 +92,17 @@ class CharacterTile extends Component {
         <div className='characterContainer'>
           <img src={CharacterImg} alt={"Character Class: " + CharacterType} />
         </div>
+
+        {/* tween when button is clicked */
+        this.state.buttonClicked ? (
+          <Tween to={{ opacity: "1" }}>
+            <div className='activeFrame_container'>
+              <img src={ClickedBorder} alt='active border'></img>
+            </div>
+          </Tween>
+        ) : (
+          <div className='activeFrame_container'></div>
+        )}
       </div>
     );
   }
