@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0240894e-8d99-421e-92d2-f78f8465b3c9/deploy-status)](https://app.netlify.com/sites/colonial-border-rg/deploys)
+
 This is a "test project" that uses the following libraries:
 
 1. node-sass
