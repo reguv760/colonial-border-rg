@@ -1,0 +1,10 @@
+.list-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 80vw;
+  height: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: $darkGray;
+}

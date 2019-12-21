@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Baskervville&display=swap");
+
+//base
+@import "./base/variables";
+@import "./base/App";
+
+//components
+@import "./../components/CharacterList";
+@import "./../components/CharacterClass";

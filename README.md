@@ -1,5 +1,19 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This is a "test project" that uses the following libraries:
+
+1. node-sass
+
+- SCSS functionality
+
+`npm install -s node-sass`
+
+2. styled-components
+
+- store css as constants
+
+`npm install -s styled-components`
+
 ## Available Scripts
 
 In the project directory, you can run:
