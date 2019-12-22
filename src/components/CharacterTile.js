@@ -33,6 +33,8 @@ class CharacterTile extends Component {
   };
 
   CharacterClick = () => {
+    //animate properties of multiple objects
+    //based on this single click:::
     if (!this.state.buttonClicked) {
       this.setState({
         borderScale: "0.98",
