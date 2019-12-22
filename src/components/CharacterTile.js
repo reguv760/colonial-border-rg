@@ -3,10 +3,9 @@ import React, { Component } from "react";
 import FrameImg from "./../assets/class-select-frame.png";
 import AnimatedBorder from "./../assets/border-anim.png";
 import ClickedBorder from "./../assets/border-anim_active-static.png";
-
 import GrayBG from "./../assets/class-select-nameplate-active.png";
 
-const initBorderSize = "0.92";
+const initBorderSize = "0.95";
 
 class CharacterTile extends Component {
   state = {
