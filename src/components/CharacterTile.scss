@@ -1,8 +1,9 @@
 .buttonContainer {
   float: left;
   position: absolute;
-  transform: scale3d(0.92, 0.92, 1);
+  // transform: scale3d(0.92, 0.92, 1);
   transform-origin: center;
+  transition: 0.25s transform ease-out;
   z-index: 250;
 
   & .border {
@@ -94,6 +95,6 @@
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0;
+    transition: 0.4s opacity ease-out;
   }
 }
