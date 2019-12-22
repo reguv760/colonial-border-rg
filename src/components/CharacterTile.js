@@ -48,9 +48,17 @@ class CharacterTile extends Component {
     this.state.animatedImageLoaded ? "afterImage" : "beforeImage";
 
   componentDidMount() {
-    this.setState({
-      animatedBorder: AnimatedBorder
-    });
+    //preload animated border on mount::
+    const animBG = new Image();
+    animBG.src = AnimatedBorder;
+
+    //then store cached image into state::
+
+    animBG.onload = () => {
+      this.setState({
+        animatedBorder: animBG.src
+      });
+    };
   }
 
   render() {

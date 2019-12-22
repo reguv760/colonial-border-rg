@@ -51,8 +51,6 @@ class CharacterList extends Component {
     ]
   };
 
-  //create click function used by character class to track "current" button clicked
-
   render() {
     return (
       <div>
