@@ -6,20 +6,18 @@ import ClickedBorder from "./../assets/border-anim_active-static.png";
 
 import GrayBG from "./../assets/class-select-nameplate-active.png";
 
+const initBorderSize = "0.92";
+
 class CharacterTile extends Component {
   state = {
     animatedImageLoaded: false,
     animatedBorder: "",
     buttonClicked: false,
-    borderScale: "0.92",
+    borderScale: initBorderSize,
     activeFrameOpacity: 0,
     namePlateOpacity: 0.5,
     grayBgOpacity: 0.1,
-
-    characterAnim: {
-      saturate: "100%",
-      contrast: "1"
-    }
+    characterAnim: ""
   };
 
   MouseOverHandler = () => {
@@ -37,25 +35,19 @@ class CharacterTile extends Component {
     //based on this single click:::
     if (!this.state.buttonClicked) {
       this.setState({
-        borderScale: "0.98",
+        borderScale: "1",
         activeFrameOpacity: 1,
         namePlateOpacity: 1,
         grayBgOpacity: 0.25,
-        characterAnim: {
-          saturate: "115%",
-          contrast: "1.25"
-        }
+        characterAnim: "character_img"
       });
     } else {
       this.setState({
-        borderScale: "0.92",
+        borderScale: initBorderSize,
         activeFrameOpacity: 0,
         namePlateOpacity: 0.5,
         grayBgOpacity: 0.1,
-        characterAnim: {
-          saturate: "100%",
-          contrast: "1"
-        }
+        characterAnim: ""
       });
     }
 
@@ -110,6 +102,7 @@ class CharacterTile extends Component {
           transform: `scale3d(${this.state.borderScale}, ${this.state.borderScale}, 1)`
         }}
       >
+        {/* change border based on mouseOver / mouseOut states */}
         <img className='border' src={currentImage[imageName]} alt='Frame' />
         <div className='character_text'>
           <p>{CharacterDesc}</p>
@@ -130,12 +123,9 @@ class CharacterTile extends Component {
         </ul>
         <div className='characterContainer'>
           <img
-            className='character_img'
+            className={`${this.state.characterAnim}`}
             src={CharacterImg}
             alt={"Character Class: " + CharacterType}
-            style={{
-              filter: `saturate(${this.state.characterAnim.saturate}) contrast(${this.state.characterAnim.contrast})`
-            }}
           />
           <img
             className='gray_bg'

@@ -1,4 +1,5 @@
 .buttonContainer {
+  display: block;
   float: left;
   position: absolute;
   // transform: scale3d(0.92, 0.92, 1);
@@ -52,7 +53,6 @@
   }
 
   & ul.items_container {
-    display: block;
     float: left;
     position: absolute;
     height: 80px;
@@ -81,6 +81,7 @@
   }
 
   & .characterContainer {
+    display: block;
     float: left;
     position: absolute;
     top: 10px;
@@ -89,7 +90,7 @@
     z-index: 20;
 
     & img.character_img {
-      transition: 0.25s filter ease-out;
+      animation: highlightCharacter 0.5s 1 ease-out;
     }
 
     & img.gray_bg {
@@ -112,14 +113,11 @@
   }
 }
 
-// @keyframes highlightCharacter {
-//   0% {
-//     filter: saturate(125%) contrast(1.25);
-//   }
-//   50% {
-//     filter: saturate(150%) contrast(1.35);
-//   }
-//   100% {
-//     filter: saturate(125%) contrast(1.25);
-//   }
-// }
+@keyframes highlightCharacter {
+  0% {
+    filter: saturate(25%) contrast(0.75);
+  }
+  100% {
+    filter: saturate(100%) contrast(1);
+  }
+}
