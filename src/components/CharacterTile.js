@@ -103,15 +103,18 @@ class CharacterTile extends Component {
       >
         {/* change border based on mouseOver / mouseOut states */}
         <img className='border' src={currentImage[imageName]} alt='Frame' />
+
         <div className='character_text'>
           <p>{CharacterDesc}</p>
         </div>
+
         <div
           className='namePlate_container'
           style={{ opacity: `${this.state.namePlateOpacity}` }}
         >
           <h4>{CharacterType}</h4>
         </div>
+
         <ul className='items_container'>
           <li>
             <h4>{CharacterWeapon}</h4>
@@ -120,6 +123,7 @@ class CharacterTile extends Component {
             <h4>{CharacterPotion}</h4>
           </li>
         </ul>
+
         <div className='characterContainer'>
           <img
             className={`${this.state.characterAnim}`}

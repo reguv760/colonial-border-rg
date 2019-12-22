@@ -28,8 +28,8 @@ const ButtonContainerStyle = styled.div`
 class CharacterClass extends Component {
   render() {
     return (
-      <CharacterItemStyle className='character-item'>
-        <ButtonContainerStyle className='button'>
+      <CharacterItemStyle>
+        <ButtonContainerStyle>
           <CharacterTile
             characterType={this.props.characterType}
             characterWeapon={this.props.characterWeapon}
