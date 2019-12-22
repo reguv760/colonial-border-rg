@@ -87,6 +87,11 @@
     left: 38px;
     transform: scale(1.06);
     z-index: 20;
+
+    & img {
+      filter: contrast(1.9) grayscale(1);
+      transition: 0.25s filter ease-out;
+    }
   }
 
   & .activeFrame_container {

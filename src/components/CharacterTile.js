@@ -9,9 +9,14 @@ class CharacterTile extends Component {
     animatedImageLoaded: false,
     animatedBorder: "",
     buttonClicked: false,
-    initScale: "0.92",
+    borderScale: "0.92",
     activeFrameOpacity: 0,
-    namePlateOpacity: 0.5
+    namePlateOpacity: 0.5,
+
+    characterAnim: {
+      saturate: "100%",
+      contrast: 1
+    }
   };
 
   MouseOverHandler = () => {
@@ -25,23 +30,31 @@ class CharacterTile extends Component {
   };
 
   CharacterClick = () => {
-    this.setState(state => ({
-      buttonClicked: !this.state.buttonClicked
-    }));
-
     if (!this.state.buttonClicked) {
       this.setState({
-        initScale: "0.98",
+        borderScale: "0.98",
         activeFrameOpacity: 1,
-        namePlateOpacity: 1
+        namePlateOpacity: 1,
+        characterAnim: {
+          saturate: "115%",
+          contrast: 1.25
+        }
       });
     } else {
       this.setState({
-        initScale: "0.92",
+        borderScale: "0.92",
         activeFrameOpacity: 0,
-        namePlateOpacity: 0.5
+        namePlateOpacity: 0.5,
+        characterAnim: {
+          saturate: "100%",
+          contrast: 1
+        }
       });
     }
+
+    this.setState(state => ({
+      buttonClicked: !this.state.buttonClicked
+    }));
   };
 
   getImageName = () =>
@@ -53,7 +66,6 @@ class CharacterTile extends Component {
     animBG.src = AnimatedBorder;
 
     //then store cached image into state::
-
     animBG.onload = () => {
       this.setState({
         animatedBorder: animBG.src
@@ -62,17 +74,23 @@ class CharacterTile extends Component {
   }
 
   render() {
+    //pull props from CharacterClass::
+    //store as const
     const CharacterType = this.props.characterType;
     const CharacterWeapon = this.props.characterWeapon;
     const CharacterPotion = this.props.characterPotion;
     const CharacterImg = this.props.characterImage;
     const CharacterDesc = this.props.characterDesc;
 
+    //object that stores two images:
+    //static + animated border
     const currentImage = {
       beforeImage: FrameImg,
       afterImage: this.state.animatedBorder
     };
 
+    //object that runs getImageName function
+    //based onMouseOver or onMouseOut event
     const imageName = this.getImageName();
 
     return (
@@ -82,7 +100,7 @@ class CharacterTile extends Component {
         onMouseOut={this.MouseOutHandler}
         onClick={this.CharacterClick}
         style={{
-          transform: `scale3d(${this.state.initScale}, ${this.state.initScale}, 1)`
+          transform: `scale3d(${this.state.borderScale}, ${this.state.borderScale}, 1)`
         }}
       >
         <img className='border' src={currentImage[imageName]} alt='Frame' />
@@ -104,7 +122,13 @@ class CharacterTile extends Component {
           </li>
         </ul>
         <div className='characterContainer'>
-          <img src={CharacterImg} alt={"Character Class: " + CharacterType} />
+          <img
+            src={CharacterImg}
+            alt={"Character Class: " + CharacterType}
+            style={{
+              filter: `saturate(${this.state.characterAnim.saturate}) contrast(${this.state.characterAnim.contrast})`
+            }}
+          />
         </div>
 
         <div
