@@ -6,10 +6,6 @@
   transition: 0.25s transform ease-out;
   z-index: 250;
 
-  & .border {
-    z-index: 500;
-  }
-
   & .character_text {
     float: left;
     position: absolute;
@@ -24,7 +20,9 @@
     text-align: center;
     color: #ccc;
     font-size: 20px;
-    line-height: 1.2em;
+    line-height: 1.25em;
+    margin: 0;
+    padding: 0;
   }
 
   & .namePlate_container {
@@ -37,6 +35,7 @@
     background-image: url("./../assets/class-select-nameplate-active.png");
     margin: 0;
     padding: 0;
+    transition: 0.5s opacity ease-out;
 
     & h4 {
       font-size: 21px;

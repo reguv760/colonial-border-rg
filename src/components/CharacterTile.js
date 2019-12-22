@@ -10,7 +10,8 @@ class CharacterTile extends Component {
     animatedBorder: "",
     buttonClicked: false,
     initScale: "0.92",
-    activeFrameOpacity: 0
+    activeFrameOpacity: 0,
+    namePlateOpacity: 0.5
   };
 
   MouseOverHandler = () => {
@@ -29,9 +30,17 @@ class CharacterTile extends Component {
     }));
 
     if (!this.state.buttonClicked) {
-      this.setState({ initScale: "0.98", activeFrameOpacity: 1 });
+      this.setState({
+        initScale: "0.98",
+        activeFrameOpacity: 1,
+        namePlateOpacity: 1
+      });
     } else {
-      this.setState({ initScale: "0.92", activeFrameOpacity: 0 });
+      this.setState({
+        initScale: "0.92",
+        activeFrameOpacity: 0,
+        namePlateOpacity: 0.5
+      });
     }
   };
 
@@ -49,6 +58,7 @@ class CharacterTile extends Component {
     const CharacterWeapon = this.props.characterWeapon;
     const CharacterPotion = this.props.characterPotion;
     const CharacterImg = this.props.characterImage;
+    const CharacterDesc = this.props.characterDesc;
 
     const currentImage = {
       beforeImage: FrameImg,
@@ -69,12 +79,12 @@ class CharacterTile extends Component {
       >
         <img className='border' src={currentImage[imageName]} alt='Frame' />
         <div className='character_text'>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero,
-            dicta ab laboriosam laudantium quisquam necessitatibus nam.
-          </p>
+          <p>{CharacterDesc}</p>
         </div>
-        <div className='namePlate_container'>
+        <div
+          className='namePlate_container'
+          style={{ opacity: `${this.state.namePlateOpacity}` }}
+        >
           <h4>{CharacterType}</h4>
         </div>
         <ul className='items_container'>

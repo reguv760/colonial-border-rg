@@ -1,3 +1,14 @@
+h2 {
+  font-family: "Baskervville", sans-serif;
+  font-size: 2.4rem;
+  color: $offWhite;
+  text-shadow: 0.1rem 0.1rem $opaqueBlack;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  background-color: $darkGray;
+}
+
 .list-container {
   display: flex;
   flex-flow: row wrap;
@@ -6,4 +17,5 @@
   height: 100%;
   margin: 0 auto;
   padding: 2rem;
+  background-color: $opaqueBlack;
 }

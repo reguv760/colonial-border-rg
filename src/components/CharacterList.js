@@ -12,38 +12,40 @@ class CharacterList extends Component {
   state = {
     CharacterArray: [
       {
-        type: "Soldier",
-        weapon: "Rifle",
-        potion: "Health Tonic",
-        description: "",
+        type: `Soldier`,
+        weapon: `Rifle`,
+        potion: `Health Tonic`,
+        description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero,
+        dicta ab laboriosam laudantium quisquam necessitatibus nam.`,
         image: SoliderImg
       },
       {
-        type: "Adventurer",
-        weapon: "Pistol",
-        potion: "Homemade Tonic",
-        description: "",
+        type: `Adventurer`,
+        weapon: `Pistol`,
+        potion: `Homemade Tonic`,
+        description: `Libero, dicta ab laboriosam laudantium quisquam necessitatibus nam.`,
         image: AdventurerImg
       },
       {
-        type: "Expatriate",
-        weapon: "English Rifle",
-        potion: "Gin",
-        description: "",
+        type: `Expatriate`,
+        weapon: `English Rifle`,
+        potion: `Gin`,
+        description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. `,
         image: ExpatriateImg
       },
       {
-        type: "Explorer",
-        weapon: "Shotgun",
-        potion: "Grandma's Brew",
-        description: "",
+        type: `Explorer`,
+        weapon: `Shotgun`,
+        potion: `Grandma's Brew`,
+        description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero,
+        dicta ab laboriosam laudantium quisquam necessitatibus nam.`,
         image: ExplorerImg
       },
       {
-        type: "Stowaway",
-        weapon: "Knife",
-        potion: "Juice",
-        description: "",
+        type: `Stowaway`,
+        weapon: `Knife`,
+        potion: `Juice`,
+        description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit.`,
         image: StowawayImg
       }
     ]
@@ -53,16 +55,20 @@ class CharacterList extends Component {
 
   render() {
     return (
-      <div className='list-container'>
-        {this.state.CharacterArray.map((character, i) => (
-          <CharacterClass
-            key={"characterType" + i}
-            characterType={character.type}
-            characterWeapon={character.weapon}
-            characterPotion={character.potion}
-            characterImage={character.image}
-          />
-        ))}
+      <div>
+        <h2>Select a character</h2>
+        <div className='list-container'>
+          {this.state.CharacterArray.map((character, i) => (
+            <CharacterClass
+              key={"CharacterTile" + i}
+              characterType={character.type}
+              characterWeapon={character.weapon}
+              characterPotion={character.potion}
+              characterDesc={character.description}
+              characterImage={character.image}
+            />
+          ))}
+        </div>
       </div>
     );
   }
