@@ -4,6 +4,8 @@ import FrameImg from "./../assets/class-select-frame.png";
 import AnimatedBorder from "./../assets/border-anim.png";
 import ClickedBorder from "./../assets/border-anim_active-static.png";
 
+import GrayBG from "./../assets/class-select-nameplate-active.png";
+
 class CharacterTile extends Component {
   state = {
     animatedImageLoaded: false,
@@ -12,10 +14,11 @@ class CharacterTile extends Component {
     borderScale: "0.92",
     activeFrameOpacity: 0,
     namePlateOpacity: 0.5,
+    grayBgOpacity: 0.1,
 
     characterAnim: {
       saturate: "100%",
-      contrast: 1
+      contrast: "1"
     }
   };
 
@@ -35,9 +38,10 @@ class CharacterTile extends Component {
         borderScale: "0.98",
         activeFrameOpacity: 1,
         namePlateOpacity: 1,
+        grayBgOpacity: 0.25,
         characterAnim: {
           saturate: "115%",
-          contrast: 1.25
+          contrast: "1.25"
         }
       });
     } else {
@@ -45,9 +49,10 @@ class CharacterTile extends Component {
         borderScale: "0.92",
         activeFrameOpacity: 0,
         namePlateOpacity: 0.5,
+        grayBgOpacity: 0.1,
         characterAnim: {
           saturate: "100%",
-          contrast: 1
+          contrast: "1"
         }
       });
     }
@@ -123,11 +128,20 @@ class CharacterTile extends Component {
         </ul>
         <div className='characterContainer'>
           <img
+            className='character_img'
             src={CharacterImg}
             alt={"Character Class: " + CharacterType}
             style={{
               filter: `saturate(${this.state.characterAnim.saturate}) contrast(${this.state.characterAnim.contrast})`
             }}
+          />
+          <img
+            className='gray_bg'
+            src={GrayBG}
+            style={{
+              opacity: `${this.state.grayBgOpacity}`
+            }}
+            alt='gray bg'
           />
         </div>
 

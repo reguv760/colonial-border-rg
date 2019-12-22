@@ -4,7 +4,6 @@
   // transform: scale3d(0.92, 0.92, 1);
   transform-origin: center;
   transition: 0.25s transform ease-out;
-  z-index: 250;
 
   & .character_text {
     float: left;
@@ -13,7 +12,7 @@
     top: 400px;
     left: 28px;
     width: 300px;
-    z-index: 30;
+    z-index: 50;
   }
 
   & .character_text p {
@@ -49,7 +48,6 @@
   & .namePlate_container img {
     float: left;
     position: absolute;
-    z-index: 12;
   }
 
   & ul.items_container {
@@ -64,6 +62,7 @@
     opacity: 0.5;
     margin: 0;
     padding: 0;
+    z-index: 50;
   }
 
   & ul.items_container li {
@@ -86,11 +85,20 @@
     top: 10px;
     left: 38px;
     transform: scale(1.06);
-    z-index: 25;
+    z-index: 20;
 
-    & img {
-      filter: contrast(1.9) grayscale(1);
+    & img.character_img {
       transition: 0.25s filter ease-out;
+    }
+
+    & img.gray_bg {
+      float: left;
+      position: absolute;
+      top: 25px;
+      left: 0;
+      width: 280px;
+      height: 502px;
+      z-index: 10;
     }
   }
 
@@ -102,3 +110,15 @@
     transition: 0.4s opacity ease-out;
   }
 }
+
+// @keyframes highlightCharacter {
+//   0% {
+//     filter: saturate(125%) contrast(1.25);
+//   }
+//   50% {
+//     filter: saturate(150%) contrast(1.35);
+//   }
+//   100% {
+//     filter: saturate(125%) contrast(1.25);
+//   }
+// }
