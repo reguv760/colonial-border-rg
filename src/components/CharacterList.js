@@ -48,13 +48,33 @@ class CharacterList extends Component {
         description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit.`,
         image: StowawayImg
       }
-    ]
+    ],
+    selectedCharacter: null,
+    currentTile: ""
   };
+
+  //this function is used to display selected character
+  //as h4 header
+  characterCallBack = selected_character => {
+    this.setState({ selectedCharacter: selected_character });
+  };
+
+  //this function is used to set current button clicked
+  currentTileClick = selected_tile => {
+    this.setState({ currentTile: selected_tile });
+  };
+
+  componentDidUpdate() {
+    console.log(this.state.currentTile.current.id + " is my current tile");
+  }
 
   render() {
     return (
       <div>
-        <h2>Select a character</h2>
+        <div className='header'>
+          <h2>Select a character</h2>
+          <h4>{this.state.selectedCharacter} </h4>
+        </div>
         <div className='list-container'>
           {this.state.CharacterArray.map((character, i) => (
             <CharacterClass
@@ -64,6 +84,10 @@ class CharacterList extends Component {
               characterPotion={character.potion}
               characterDesc={character.description}
               characterImage={character.image}
+              selectedCharacter={this.characterCallBack}
+              currentTileClick={this.currentTileClick}
+              tileID={"button" + i}
+              currentTile={this.state.currentTile}
             />
           ))}
         </div>

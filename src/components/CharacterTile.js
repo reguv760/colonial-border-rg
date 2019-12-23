@@ -8,6 +8,8 @@ import GrayBG from "./../assets/class-select-nameplate-active.png";
 const initBorderSize = "0.95";
 
 class CharacterTile extends Component {
+  CharacterTileObj = React.createRef();
+
   state = {
     animatedImageLoaded: false,
     animatedBorder: "",
@@ -19,18 +21,18 @@ class CharacterTile extends Component {
     characterAnim: ""
   };
 
-  MouseOverHandler = () => {
+  MouseOverHandler = e => {
     this.setState({
       animatedImageLoaded: true
     });
   };
 
-  MouseOutHandler = () => {
+  MouseOutHandler = e => {
     this.setState({ animatedImageLoaded: false });
   };
 
-  CharacterClick = () => {
-    //animate properties of multiple objects
+  CharacterClick = e => {
+    //animate properties of objects
     //based on this single click:::
     if (!this.state.buttonClicked) {
       this.setState({
@@ -40,6 +42,22 @@ class CharacterTile extends Component {
         grayBgOpacity: 0.25,
         characterAnim: "character_img"
       });
+
+      //function to load selected character to header:::
+      this.props.selectedCharacter(this.props.characterType + " selected");
+
+      //function that selects which current button is selected::
+      this.props.currentTileClick(this.CharacterTileObj);
+
+      //logic to turn off current selected button
+      //if it's not equal to itself
+      if (
+        this.props.currentTile !== "" &&
+        this.CharacterTileObj !== this.props.currentTile
+      ) {
+        console.log(this.props.currentTile.current.id + " should turn off");
+        //this.props.currentTile.CharacterClick();
+      }
     } else {
       this.setState({
         borderScale: initBorderSize,
@@ -48,15 +66,23 @@ class CharacterTile extends Component {
         grayBgOpacity: 0.1,
         characterAnim: ""
       });
+
+      this.props.selectedCharacter("");
     }
 
-    this.setState(state => ({
-      buttonClicked: !this.state.buttonClicked
-    }));
+    this.setState({ buttonClicked: !this.state.buttonClicked });
   };
 
   getImageName = () =>
     this.state.animatedImageLoaded ? "afterImage" : "beforeImage";
+
+  // unselectTile = (selected_tile, currentTile) => {
+  //   if (currentTile !== selected_tile) {
+  //     console.log("true");
+  //     //this.CharacterClick()
+  //     //this.setState({ buttonClicked: false });
+  //   }
+  // };
 
   componentDidMount() {
     //preload animated border on mount::
@@ -73,12 +99,14 @@ class CharacterTile extends Component {
 
   render() {
     //pull props from CharacterClass::
-    //store as const
-    const CharacterType = this.props.characterType;
-    const CharacterWeapon = this.props.characterWeapon;
-    const CharacterPotion = this.props.characterPotion;
-    const CharacterImg = this.props.characterImage;
-    const CharacterDesc = this.props.characterDesc;
+    //store as destructured const
+    const {
+      characterType,
+      characterWeapon,
+      characterPotion,
+      characterImage,
+      characterDesc
+    } = this.props;
 
     //object that stores two images:
     //static + animated border
@@ -93,6 +121,8 @@ class CharacterTile extends Component {
 
     return (
       <div
+        ref={this.CharacterTileObj}
+        id={this.props.tileID}
         className='buttonContainer'
         onMouseOver={this.MouseOverHandler}
         onMouseOut={this.MouseOutHandler}
@@ -105,30 +135,30 @@ class CharacterTile extends Component {
         <img className='border' src={currentImage[imageName]} alt='Frame' />
 
         <div className='character_text'>
-          <p>{CharacterDesc}</p>
+          <p>{characterDesc}</p>
         </div>
 
         <div
           className='namePlate_container'
           style={{ opacity: `${this.state.namePlateOpacity}` }}
         >
-          <h4>{CharacterType}</h4>
+          <h4>{characterType}</h4>
         </div>
 
         <ul className='items_container'>
           <li>
-            <h4>{CharacterWeapon}</h4>
+            <h4>{characterWeapon}</h4>
           </li>
           <li>
-            <h4>{CharacterPotion}</h4>
+            <h4>{characterPotion}</h4>
           </li>
         </ul>
 
         <div className='characterContainer'>
           <img
             className={`${this.state.characterAnim}`}
-            src={CharacterImg}
-            alt={"Character Class: " + CharacterType}
+            src={characterImage}
+            alt={"Character Class: " + characterType}
           />
           <img
             className='gray_bg'

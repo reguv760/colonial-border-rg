@@ -36,6 +36,10 @@ class CharacterClass extends Component {
             characterPotion={this.props.characterPotion}
             characterImage={this.props.characterImage}
             characterDesc={this.props.characterDesc}
+            selectedCharacter={this.props.selectedCharacter}
+            currentTileClick={this.props.currentTileClick}
+            tileID={this.props.tileID}
+            currentTile={this.props.currentTile}
           />
         </ButtonContainerStyle>
       </CharacterItemStyle>

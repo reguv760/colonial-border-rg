@@ -10,6 +10,30 @@ h2 {
   background-color: $darkGray;
 }
 
+h4 {
+  display: inline-block;
+  font-family: "Baskervville", sans-serif;
+  font-size: 1.2rem;
+  color: $silverGray;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.header {
+  height: 6rem;
+  width: 75vw;
+  margin: 0 auto;
+  padding: 1rem;
+
+  & h4 {
+    color: $offWhite;
+    font-size: 1.4rem;
+    margin: 1rem 0;
+    text-shadow: 0.1rem 0.1rem $opaqueBlack;
+  }
+}
+
 .list-container {
   display: flex;
   flex-flow: row wrap;
