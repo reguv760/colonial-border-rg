@@ -32,8 +32,7 @@ class CharacterTile extends Component {
   };
 
   CharacterClick = e => {
-    //animate properties of objects
-    //based on this single click:::
+    //animate properties of objects based on this single click:::
     if (!this.state.buttonClicked) {
       this.setState({
         borderScale: "1",
@@ -49,8 +48,7 @@ class CharacterTile extends Component {
       //function that selects which current button is selected::
       this.props.currentTileClick(this.CharacterTileObj);
 
-      //logic to turn off current selected button
-      //if it's not equal to itself
+      //logic to turn off current selected button if it's not equal to itself
       if (
         this.props.currentTile !== "" &&
         this.CharacterTileObj !== this.props.currentTile
@@ -98,8 +96,7 @@ class CharacterTile extends Component {
   }
 
   render() {
-    //pull props from CharacterClass::
-    //store as destructured const
+    //pull props from CharacterClass then store as destructured const
     const {
       characterType,
       characterWeapon,
@@ -108,11 +105,20 @@ class CharacterTile extends Component {
       characterDesc
     } = this.props;
 
-    //object that stores two images:
-    //static + animated border
+    //pull variabales from state then store as destructured const
+    const {
+      borderScale,
+      animatedBorder,
+      namePlateOpacity,
+      characterAnim,
+      grayBgOpacity,
+      activeFrameOpacity
+    } = this.state;
+
+    //const object that stores two images, static + animated border
     const currentImage = {
       beforeImage: FrameImg,
-      afterImage: this.state.animatedBorder
+      afterImage: animatedBorder
     };
 
     //object that runs getImageName function
@@ -122,13 +128,12 @@ class CharacterTile extends Component {
     return (
       <div
         ref={this.CharacterTileObj}
-        id={this.props.tileID}
         className='buttonContainer'
         onMouseOver={this.MouseOverHandler}
         onMouseOut={this.MouseOutHandler}
         onClick={this.CharacterClick}
         style={{
-          transform: `scale3d(${this.state.borderScale}, ${this.state.borderScale}, 1)`
+          transform: `scale3d(${borderScale}, ${borderScale}, 1)`
         }}
       >
         {/* change border based on mouseOver / mouseOut states */}
@@ -140,7 +145,7 @@ class CharacterTile extends Component {
 
         <div
           className='namePlate_container'
-          style={{ opacity: `${this.state.namePlateOpacity}` }}
+          style={{ opacity: `${namePlateOpacity}` }}
         >
           <h4>{characterType}</h4>
         </div>
@@ -156,7 +161,7 @@ class CharacterTile extends Component {
 
         <div className='characterContainer'>
           <img
-            className={`${this.state.characterAnim}`}
+            className={`${characterAnim}`}
             src={characterImage}
             alt={"Character Class: " + characterType}
           />
@@ -164,7 +169,7 @@ class CharacterTile extends Component {
             className='gray_bg'
             src={GrayBG}
             style={{
-              opacity: `${this.state.grayBgOpacity}`
+              opacity: `${grayBgOpacity}`
             }}
             alt='gray bg'
           />
@@ -172,7 +177,7 @@ class CharacterTile extends Component {
 
         <div
           className='activeFrame_container'
-          style={{ opacity: `${this.state.activeFrameOpacity}` }}
+          style={{ opacity: `${activeFrameOpacity}` }}
         >
           <img src={ClickedBorder} alt='active border'></img>
         </div>

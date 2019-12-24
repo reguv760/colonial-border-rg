@@ -86,7 +86,6 @@ class CharacterList extends Component {
               characterImage={character.image}
               selectedCharacter={this.characterCallBack}
               currentTileClick={this.currentTileClick}
-              tileID={"button" + i}
               currentTile={this.state.currentTile}
             />
           ))}

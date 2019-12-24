@@ -38,7 +38,6 @@ class CharacterClass extends Component {
             characterDesc={this.props.characterDesc}
             selectedCharacter={this.props.selectedCharacter}
             currentTileClick={this.props.currentTileClick}
-            tileID={this.props.tileID}
             currentTile={this.props.currentTile}
           />
         </ButtonContainerStyle>
