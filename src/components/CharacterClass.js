@@ -27,18 +27,31 @@ const ButtonContainerStyle = styled.div`
 
 class CharacterClass extends Component {
   render() {
+    //destructure variables from CharacterList props
+    //then store as const
+    const {
+      characterType,
+      characterWeapon,
+      characterPotion,
+      characterImage,
+      characterDesc,
+      selectedCharacter,
+      currentTileClick,
+      currentTile
+    } = this.props;
+
     return (
       <CharacterItemStyle>
         <ButtonContainerStyle>
           <CharacterTile
-            characterType={this.props.characterType}
-            characterWeapon={this.props.characterWeapon}
-            characterPotion={this.props.characterPotion}
-            characterImage={this.props.characterImage}
-            characterDesc={this.props.characterDesc}
-            selectedCharacter={this.props.selectedCharacter}
-            currentTileClick={this.props.currentTileClick}
-            currentTile={this.props.currentTile}
+            characterType={characterType}
+            characterWeapon={characterWeapon}
+            characterPotion={characterPotion}
+            characterImage={characterImage}
+            characterDesc={characterDesc}
+            selectedCharacter={selectedCharacter}
+            currentTileClick={currentTileClick}
+            currentTile={currentTile}
           />
         </ButtonContainerStyle>
       </CharacterItemStyle>

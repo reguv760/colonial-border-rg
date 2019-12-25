@@ -49,8 +49,8 @@ class CharacterList extends Component {
         image: StowawayImg
       }
     ],
-    selectedCharacter: null,
-    currentTile: ""
+    selectedCharacter: ``,
+    currentTile: null
   };
 
   //this function is used to display selected character
@@ -62,11 +62,19 @@ class CharacterList extends Component {
   //this function is used to set current button clicked
   currentTileClick = selected_tile => {
     this.setState({ currentTile: selected_tile });
+
+    //logic to turn off current selected button if it's not equal to itself
+    if (
+      this.state.currentTile !== null &&
+      selected_tile !== this.state.currentTile
+    ) {
+      return true;
+    }
   };
 
-  componentDidUpdate() {
-    console.log(this.state.currentTile.current.id + " is my current tile");
-  }
+  // componentDidUpdate() {
+  //   console.log(this.state.currentTile.current);
+  // }
 
   render() {
     return (

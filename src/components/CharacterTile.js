@@ -6,6 +6,7 @@ import ClickedBorder from "./../assets/border-anim_active-static.png";
 import GrayBG from "./../assets/class-select-nameplate-active.png";
 
 const initBorderSize = "0.95";
+let buttonClicked = false;
 
 class CharacterTile extends Component {
   CharacterTileObj = React.createRef();
@@ -13,7 +14,7 @@ class CharacterTile extends Component {
   state = {
     animatedImageLoaded: false,
     animatedBorder: "",
-    buttonClicked: false,
+    buttonClicked: buttonClicked,
     borderScale: initBorderSize,
     activeFrameOpacity: 0,
     namePlateOpacity: 0.5,
@@ -32,8 +33,12 @@ class CharacterTile extends Component {
   };
 
   CharacterClick = e => {
+    const { characterType, selectedCharacter } = this.props;
+
+    const { buttonClicked } = this.state;
+
     //animate properties of objects based on this single click:::
-    if (!this.state.buttonClicked) {
+    if (!buttonClicked) {
       this.setState({
         borderScale: "1",
         activeFrameOpacity: 1,
@@ -43,19 +48,7 @@ class CharacterTile extends Component {
       });
 
       //function to load selected character to header:::
-      this.props.selectedCharacter(this.props.characterType + " selected");
-
-      //function that selects which current button is selected::
-      this.props.currentTileClick(this.CharacterTileObj);
-
-      //logic to turn off current selected button if it's not equal to itself
-      if (
-        this.props.currentTile !== "" &&
-        this.CharacterTileObj !== this.props.currentTile
-      ) {
-        console.log(this.props.currentTile.current.id + " should turn off");
-        //this.props.currentTile.CharacterClick();
-      }
+      selectedCharacter(characterType + " selected");
     } else {
       this.setState({
         borderScale: initBorderSize,
@@ -65,22 +58,33 @@ class CharacterTile extends Component {
         characterAnim: ""
       });
 
-      this.props.selectedCharacter("");
+      selectedCharacter("");
     }
 
-    this.setState({ buttonClicked: !this.state.buttonClicked });
+    this.setState({ buttonClicked: !buttonClicked }, () =>
+      this.unselectTile(this.CharacterTileObj)
+    );
+  };
+
+  unselectTile = unselectTile => {
+    const { currentTile, currentTileClick } = this.props;
+
+    if (currentTileClick(unselectTile)) {
+      console.log(currentTile);
+      // currentTile.style = "transform: scale3d(0.95, 0.95, 1)";
+      // currentTile.lastChild.style = "opacity: 0";
+      // currentTile.childNodes[2].style = "opacity: 0.5";
+      // currentTile.childNodes[4].childNodes[1].style = "opacity: 0.1";
+
+      //console.log(this.CharacterClick);
+      //disable currentTile.state.buttonClick from here:::
+      //this.setState({ buttonClicked: false });
+      //currentTile.CharacterClick();
+    }
   };
 
   getImageName = () =>
     this.state.animatedImageLoaded ? "afterImage" : "beforeImage";
-
-  // unselectTile = (selected_tile, currentTile) => {
-  //   if (currentTile !== selected_tile) {
-  //     console.log("true");
-  //     //this.CharacterClick()
-  //     //this.setState({ buttonClicked: false });
-  //   }
-  // };
 
   componentDidMount() {
     //preload animated border on mount::
@@ -127,7 +131,7 @@ class CharacterTile extends Component {
 
     return (
       <div
-        ref={this.CharacterTileObj}
+        ref={CharacterTileObj => (this.CharacterTileObj = CharacterTileObj)}
         className='buttonContainer'
         onMouseOver={this.MouseOverHandler}
         onMouseOut={this.MouseOutHandler}
