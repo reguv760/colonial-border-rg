@@ -9,12 +9,16 @@ body {
   font-size: 62.5%;
   margin: 0;
   padding: 0;
-  background-image: url("./../../assets/colonial_bg.jpg");
+  background-image: url("./../../assets/colonial_bg-sepia.jpg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 
 img {
   margin: 0;
   padding: 0;
+}
+
+h4 {
+  letter-spacing: 0.15em;
 }

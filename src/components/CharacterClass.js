@@ -1,78 +1,60 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+import CharacterTile from "./CharacterTile";
+import ButtonBackground from "./../assets/class-select-bg.jpg";
 
-import FrameImg from "./../assets/class-select-frame.png";
-import AnimatedBorder from "./../assets/border-anim.png";
+const CharacterItemStyle = styled.div`
+  display: inline-block;
+  width: 363px;
+  max-width: 363px;
+  height: 729px;
+  max-height: 729px;
+  margin: 1rem;
+  padding: 0;
+`;
+
+const ButtonContainerStyle = styled.div`
+  display: block;
+  cursor: pointer;
+  width: 363px;
+  height: 729px;
+  background-size: cover;
+  background-image: url(${ButtonBackground});
+
+  font-family: "Baskervville", serif;
+  position: relative;
+`;
 
 class CharacterClass extends Component {
-  state = {
-    animatedImageLoaded: false
-  };
-
-  MouseOverHandler = () => {
-    this.setState(state => ({
-      animatedImageLoaded: !state.animatedImageLoaded
-    }));
-  };
-
-  getImageName = () =>
-    this.state.animatedImageLoaded ? "afterImage" : "beforeImage";
-  // MouseOverHandler = e => {
-  //   e.target.src = AnimatedBorder;
-  // };
-
-  // MouseOutHandler = e => {
-  //   e.target.src = FrameImg;
-  // };
-
   render() {
-    const CharacterType = this.props.characterType;
-    const CharacterWeapon = this.props.characterWeapon;
-    const CharacterPotion = this.props.characterPotion;
-    const CharacterImg = this.props.characterImage;
-
-    const currentImage = {
-      beforeImage: FrameImg,
-      afterImage: AnimatedBorder
-    };
-
-    const imageName = this.getImageName();
+    //destructure variables from CharacterList props
+    //then store as const
+    const {
+      characterType,
+      characterWeapon,
+      characterPotion,
+      characterImage,
+      characterDesc,
+      selectedCharacter,
+      currentTileClick,
+      currentTile
+    } = this.props;
 
     return (
-      <div className='character-item'>
-        <div
-          className='button'
-          onMouseOver={this.MouseOverHandler}
-          onMouseOut={this.MouseOverHandler}
-        >
-          <div className='buttonContainer'>
-            <img className='border' src={currentImage[imageName]} alt='Frame' />
-            <div className='character_text'>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Libero, dicta ab laboriosam laudantium quisquam necessitatibus
-                nam.
-              </p>
-            </div>
-            <div className='namePlate_container'>
-              <h4>{CharacterType}</h4>
-            </div>
-            <ul className='items_container'>
-              <li>
-                <h4>{CharacterWeapon}</h4>
-              </li>
-              <li>
-                <h4>{CharacterPotion}</h4>
-              </li>
-            </ul>
-            <div className='characterContainer'>
-              <img
-                src={CharacterImg}
-                alt={"Character Class: " + CharacterType}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <CharacterItemStyle>
+        <ButtonContainerStyle>
+          <CharacterTile
+            characterType={characterType}
+            characterWeapon={characterWeapon}
+            characterPotion={characterPotion}
+            characterImage={characterImage}
+            characterDesc={characterDesc}
+            selectedCharacter={selectedCharacter}
+            currentTileClick={currentTileClick}
+            currentTile={currentTile}
+          />
+        </ButtonContainerStyle>
+      </CharacterItemStyle>
     );
   }
 }

@@ -12,57 +12,92 @@ class CharacterList extends Component {
   state = {
     CharacterArray: [
       {
-        type: "Soldier",
-        weapon: "Rifle",
-        potion: "Health Tonic",
-        description: "",
+        type: `Soldier`,
+        weapon: `Rifle`,
+        potion: `Health Tonic`,
+        description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero,
+        dicta ab laboriosam laudantium quisquam necessitatibus nam.`,
         image: SoliderImg
       },
       {
-        type: "Adventurer",
-        weapon: "Pistol",
-        potion: "Homemade Tonic",
-        description: "",
+        type: `Adventurer`,
+        weapon: `Pistol`,
+        potion: `Homemade Tonic`,
+        description: `Libero, dicta ab laboriosam laudantium quisquam necessitatibus nam.`,
         image: AdventurerImg
       },
       {
-        type: "Expatriate",
-        weapon: "English Rifle",
-        potion: "Gin",
-        description: "",
+        type: `Expatriate`,
+        weapon: `English Rifle`,
+        potion: `Gin`,
+        description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. `,
         image: ExpatriateImg
       },
       {
-        type: "Explorer",
-        weapon: "Shotgun",
-        potion: "Grandma's Brew",
-        description: "",
+        type: `Explorer`,
+        weapon: `Shotgun`,
+        potion: `Grandma's Brew`,
+        description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero,
+        dicta ab laboriosam laudantium quisquam necessitatibus nam.`,
         image: ExplorerImg
       },
       {
-        type: "Stowaway",
-        weapon: "Knife",
-        potion: "Juice",
-        description: "",
+        type: `Stowaway`,
+        weapon: `Knife`,
+        potion: `Juice`,
+        description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit.`,
         image: StowawayImg
       }
-    ]
+    ],
+    selectedCharacter: ``,
+    currentTile: null
   };
 
-  //create click function used by character class to track "current" button clicked
+  //this function is used to display selected character
+  //as h4 header
+  characterCallBack = selected_character => {
+    this.setState({ selectedCharacter: selected_character });
+  };
+
+  //this function is used to set current button clicked
+  currentTileClick = selected_tile => {
+    this.setState({ currentTile: selected_tile });
+
+    //logic to turn off current selected button if it's not equal to itself
+    if (
+      this.state.currentTile !== null &&
+      selected_tile !== this.state.currentTile
+    ) {
+      return true;
+    }
+  };
+
+  // componentDidUpdate() {
+  //   console.log(this.state.currentTile.current);
+  // }
 
   render() {
     return (
-      <div className='list-container'>
-        {this.state.CharacterArray.map((character, i) => (
-          <CharacterClass
-            key={"characterType" + i}
-            characterType={character.type}
-            characterWeapon={character.weapon}
-            characterPotion={character.potion}
-            characterImage={character.image}
-          />
-        ))}
+      <div>
+        <div className='header'>
+          <h2>Select a character</h2>
+          <h4>{this.state.selectedCharacter} </h4>
+        </div>
+        <div className='list-container'>
+          {this.state.CharacterArray.map((character, i) => (
+            <CharacterClass
+              key={"CharacterTile" + i}
+              characterType={character.type}
+              characterWeapon={character.weapon}
+              characterPotion={character.potion}
+              characterDesc={character.description}
+              characterImage={character.image}
+              selectedCharacter={this.characterCallBack}
+              currentTileClick={this.currentTileClick}
+              currentTile={this.state.currentTile}
+            />
+          ))}
+        </div>
       </div>
     );
   }

@@ -1,0 +1,130 @@
+.buttonContainer {
+  display: block;
+  float: left;
+  position: absolute;
+  // transform: scale3d(0.92, 0.92, 1);
+  transform-origin: center;
+  transition: 0.25s transform ease-out;
+
+  & .border {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+
+  & .character_text {
+    float: left;
+    position: absolute;
+    display: block;
+    top: 400px;
+    left: 28px;
+    width: 300px;
+    z-index: 50;
+  }
+
+  & .character_text p {
+    text-align: center;
+    color: #ccc;
+    font-size: 20px;
+    line-height: 1.25em;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0.02em;
+  }
+
+  & .namePlate_container {
+    float: left;
+    position: absolute;
+    top: 563px;
+    left: 25px;
+    width: 300px;
+    height: 66px;
+    background-image: url("./../assets/class-select-nameplate-active.png");
+    margin: 0;
+    padding: 0;
+    transition: 0.5s opacity ease-out;
+
+    & h4 {
+      font-size: 21px;
+      padding: 0;
+      margin: 14px 0 0 0;
+      text-align: center;
+      color: $silverGray;
+    }
+  }
+
+  & .namePlate_container img {
+    float: left;
+    position: absolute;
+  }
+
+  & ul.items_container {
+    float: left;
+    position: absolute;
+    height: 80px;
+    width: 300px;
+    top: 633px;
+    left: 24px;
+    background-image: url("./../assets/class-select-nameplate-active.png");
+    opacity: 0.5;
+    margin: 0;
+    padding: 0;
+    z-index: 50;
+  }
+
+  & ul.items_container li {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  & ul.items_container li h4 {
+    font-size: 1.2rem;
+    padding: 0;
+    margin: 0.7rem 0 0 0;
+    text-align: center;
+    color: $silverGray;
+  }
+
+  & .characterContainer {
+    display: block;
+    float: left;
+    position: absolute;
+    top: 10px;
+    left: 38px;
+    transform: scale(1.06);
+    z-index: 20;
+
+    & img.character_img {
+      animation: highlightCharacter 0.5s 1 ease-out;
+    }
+
+    & img.gray_bg {
+      float: left;
+      position: absolute;
+      top: 25px;
+      left: 0;
+      width: 280px;
+      height: 502px;
+      z-index: 10;
+    }
+  }
+
+  & .activeFrame_container {
+    float: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.4s opacity ease-out;
+  }
+}
+
+@keyframes highlightCharacter {
+  0% {
+    filter: saturate(0.5) contrast(0.75) brightness(1.75);
+  }
+  100% {
+    filter: saturate(1) contrast(1) brightness(1);
+  }
+}
